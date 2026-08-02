@@ -72,7 +72,6 @@ export interface Config {
     media: Media;
     categories: Category;
     posts: Post;
-    cars: Car;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -85,7 +84,6 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     posts: PostsSelect<false> | PostsSelect<true>;
-    cars: CarsSelect<false> | CarsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -216,24 +214,6 @@ export interface Post {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "cars".
- */
-export interface Car {
-  id: number;
-  brand?: string | null;
-  model?: string | null;
-  specs?:
-    | {
-        name?: string | null;
-        value?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -275,10 +255,6 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'posts';
         value: number | Post;
-      } | null)
-    | ({
-        relationTo: 'cars';
-        value: number | Car;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -398,23 +374,6 @@ export interface PostsSelect<T extends boolean = true> {
   tenant?: T;
   title?: T;
   category?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "cars_select".
- */
-export interface CarsSelect<T extends boolean = true> {
-  brand?: T;
-  model?: T;
-  specs?:
-    | T
-    | {
-        name?: T;
-        value?: T;
-        id?: T;
-      };
   updatedAt?: T;
   createdAt?: T;
 }

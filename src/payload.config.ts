@@ -5,13 +5,11 @@ import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
 import sharp from 'sharp'
 
-import { Users } from './collections/Users'
-import { Media } from './collections/Media'
+import { Users } from './collections/Users/Users'
+import { Media } from './collections/Media/Media'
 import { Tenants } from './collections/Tenants/Tenants'
-import { Categories } from './collections/Categories'
-import { Posts } from './collections/Posts'
-
-import { Cars } from './collections/Cars'
+import { Categories } from './collections/Posts/Categories'
+import { Posts } from './collections/Posts/Posts'
 
 //plugins
 import { multiTenantPlugin } from '@payloadcms/plugin-multi-tenant'
@@ -26,7 +24,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Tenants, Users, Media, Categories, Posts, Cars],
+  collections: [Tenants, Users, Media, Categories, Posts],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
