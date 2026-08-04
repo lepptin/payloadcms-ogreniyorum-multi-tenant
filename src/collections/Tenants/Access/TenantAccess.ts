@@ -7,7 +7,6 @@ export const TenantReadAccess: Access = ({ req }): AccessResult => {
   // Normal kullanıcı sadece kendi tenant'larını görebilir
   if (req.user?.tenants && req.user.tenants.length > 0) {
     // Kullanıcının tenant ID'lerini al
-    console.log('user tenants:', req.user.tenants)
     const userTenantIds = req.user.tenants
       .map((t: any) => (typeof t.tenant === 'string' ? t.tenant : t.tenant?.id))
       .filter(Boolean)
